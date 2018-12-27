@@ -1,14 +1,21 @@
 import * as React from 'react'
+import { graphql, ChildMutateProps } from 'react-apollo'
+import gql from 'graphql-tag'
+import { SignUpUserMutation, SignUpUserMutationVariables } from '../../generated/SignUpUserMutation';
 
 interface Props {
     children: ( 
-        data: {submit: (values: any) => Promise<null>}
+        data: {submit: (values: SignUpUserMutationVariables) => Promise<null>}
     ) => JSX.Element | null
 }
 
-export class RegisterController extends React.PureComponent<Props> {
-    submit = async (values: any) => {
+export class C extends React.PureComponent<ChildMutateProps<Props, SignUpUserMutation, SignUpUserMutationVariables>> {
+    submit = async (values: SignUpUserMutationVariables) => {
         console.log(values)
+        const response = await this.props.mutate({
+            variables: values
+        })
+        console.log('response: ', response)
         return null
     }
 
@@ -16,3 +23,19 @@ export class RegisterController extends React.PureComponent<Props> {
         return this.props.children({ submit: this.submit })
     }
 }
+
+const signUpUserMutation = gql`
+    mutation SignUpUserMutation 
+            ( 	$email: String!, 
+                $password: String!
+            ) {
+    signUpUser(
+        data: {
+        email: $email,
+        password: $password,
+        }
+    ) { user { id } token } 
+    }   
+`
+
+export const RegisterController = graphql<Props, SignUpUserMutation, SignUpUserMutationVariables>(signUpUserMutation)(C)

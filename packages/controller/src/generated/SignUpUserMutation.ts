@@ -1,0 +1,37 @@
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SignUpUserMutation
+// ====================================================
+
+export interface SignUpUserMutation_signUpUser_user {
+  id: string;
+}
+
+export interface SignUpUserMutation_signUpUser {
+  user: SignUpUserMutation_signUpUser_user;
+  token: string;
+}
+
+export interface SignUpUserMutation {
+  signUpUser: SignUpUserMutation_signUpUser;
+}
+
+export interface SignUpUserMutationVariables {
+  email: string;
+  password: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+//==============================================================
+// START Enums and Input Objects
+//==============================================================
+
+//==============================================================
+// END Enums and Input Objects
+//==============================================================
