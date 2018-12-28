@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "build:aaxadminweb": "lerna run build --scope={@aaxadmin/common,@aaxadmin/aaxadminweb}"
+        "build:web": "lerna run build --scope={@aaxadmin/common,@aaxadmin/web}"
     },
     "workspaces": {
         "packages": [
@@ -9,7 +9,17 @@
         ],
         "noHoist": [
             "**/rimraf",
-            "**/rimraf/**"
+            "**/rimraf/**",
+            "**/react-native-elements",
+            "**/react-native-elements/**",
+            "**/react-native",
+            "**/react-native/**",
+            "**/expo",
+            "**/expo/**",
+            "**/react-native-typescript-transformer",
+            "**/react-native-typescript-transformer/**",
+            "**/metro-bundler-config-yarn-workspaces",
+            "**/metro-bundler-config-yarn-workspaces/**"
         ]
     },
     "name": "aaxadmin",

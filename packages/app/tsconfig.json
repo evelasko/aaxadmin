@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "lib": ["es6", "esnext.asynciterable"],
+      "jsx": "react-native",
+      "esModuleInterop": true,
+      "rootDir": "src",
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "types": [
+        "jest"
+      ]
+    }
+  }
