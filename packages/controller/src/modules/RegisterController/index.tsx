@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import { SignUpUserMutation, SignUpUserMutationVariables } from '../../generated/SignUpUserMutation';
+import { SignUpUserMutation, SignUpUserMutationVariables } from '../../schemaTypes';
 
 interface Props {
     children: ( 
@@ -34,7 +34,7 @@ const signUpUserMutation = gql`
         email: $email,
         password: $password,
         }
-    ) { user { id } token } 
+    ) { user { id } token error } 
     }   
 `
 

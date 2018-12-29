@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Form as AntForm, Icon, Button } from 'antd'
-import  { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik'
-import { validUserSchema } from '@aaxadmin/common'
+import  { withFormik, FormikProps, Field, Form } from 'formik'
+import { Link } from 'react-router-dom'
+import { loginSchema } from '@aaxadmin/common'
 import { InputField } from '../../shared/InputField';
-import { Link } from 'react-router-dom';
 
 const FormItem = AntForm.Item
 
@@ -13,7 +13,7 @@ interface FormValues {
 }
 
 interface Props {
-    submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>
+    submit: (values: FormValues) => Promise< { [key: string]: string } | null >
 }
 
 export class C extends React.PureComponent<FormikProps<FormValues> & Props> {    
@@ -39,11 +39,11 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
             </FormItem>
             <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button">
-                Register
+                Login
             </Button>
             </FormItem>
             <FormItem>
-            Or <Link to="/login">Log in now!</Link>
+            Or <Link to="/register">sign up!</Link>
             </FormItem>
         </div>
       </Form>
@@ -51,8 +51,10 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
   }
 }
 
-export const RegisterView = withFormik<Props, FormValues>({
-    validationSchema: validUserSchema,
+export const LoginView = withFormik<Props, FormValues>({
+    validationSchema: loginSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
     mapPropsToValues: () => ({ email: '', password: ''}),
     handleSubmit: async (values, {props, setErrors, setSubmitting}) => {
         const errors = await props.submit(values)

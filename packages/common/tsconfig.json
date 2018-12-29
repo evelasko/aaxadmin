@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
-      "target": "es6",
+      "target": "es5",
       "module": "commonjs",
       "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
       "sourceMap": true,
       "outDir": "./dist",
+      "rootDir": "src",
       "moduleResolution": "node",
       "declaration": true,
-  
       "removeComments": true,
       "noImplicitAny": true,
       "strictNullChecks": true,
@@ -17,9 +17,10 @@
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
-      "allowSyntheticDefaultImports": false
+      "allowSyntheticDefaultImports": false,
+      "types": ["jest", "node", "react", "react-dom", "react-router-dom"],
+      "skipLibCheck": true
     },
     "exclude": ["node_modules"],
     "include": ["./src/**/*.tsx", "./src/**/*.ts"]
   }
-  

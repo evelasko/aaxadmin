@@ -5,7 +5,9 @@
   "typings": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf ./dist && tsc"
+    "build": "rimraf ./dist && tsc",
+    "schema:generate": "apollo codegen:generate --includes=./src/**/*.tsx --endpoint=http://localhost:4000 --target=typescript --outputFlat ./src/schemaTypes.ts",
+    "refresh:types": "npm run schema:generate && npm run build"
   },
   "dependencies": {
     "graphql": "^14.0.2",
@@ -18,6 +20,7 @@
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
+    "apollo": "^2.1.8",
     "apollo-codegen": "^0.20.2",
     "rimraf": "^2.6.2",
     "tslint": "^5.12.0",

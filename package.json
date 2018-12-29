@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "build:web": "lerna run build --scope={@aaxadmin/common,@aaxadmin/web}"
+        "build:web": "lerna run build --scope={@aaxadmin/common,@aaxadmin/controller, @aaxadmin/web}"
     },
     "workspaces": {
         "packages": [
