@@ -1,26 +1,26 @@
 import * as React from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import { SignUpUserMutation, SignUpUserMutationVariables } from '../../schemaTypes';
+import { ConfirmEmailMutation, ConfirmEmailMutationVariables } from '../../schemaTypes';
 import { normalizeResponse } from '../../utils/normalizeResponse'
 
 interface Props {
     children: ( 
         data: {
-            submit: (values: SignUpUserMutationVariables) => 
+            submit: (values: ConfirmEmailMutationVariables) => 
                 Promise<{ [key: string]: string } | null >
         }
     ) => JSX.Element | null
 }
 
-export class C extends React.PureComponent<ChildMutateProps<Props, SignUpUserMutation, SignUpUserMutationVariables>> {
-    submit = async (values: SignUpUserMutationVariables) => {
+export class E extends React.PureComponent<ChildMutateProps<Props, ConfirmEmailMutation, ConfirmEmailMutationVariables>> {
+    submit = async (values: ConfirmEmailMutationVariables) => {
         console.log('values: ', values)
         const response = normalizeResponse(await this.props.mutate({ variables: values }))
         console.log('response: ', response)
-        if (response.data.signUpUser.error) {
+        if (response.data.confirmEmail.error) {
             console.log('error inside controller...')
-            return {email: response.data.signUpUser.error}
+            return {email: response.data.confirmEmail.error}
         }
         return null
     }
@@ -30,12 +30,12 @@ export class C extends React.PureComponent<ChildMutateProps<Props, SignUpUserMut
     }
 }
 
-const signUpUserMutation = gql`
-    mutation SignUpUserMutation ( $email: String!, $password: String! ) 
+const confirmEmailMutation = gql`
+    mutation ConfirmEmailMutation ( $key: String! ) 
     {
-        signUpUser( data: { email: $email, password: $password } )
+        confirmEmail( key: $key )
         { token error } 
     }   
 `
 
-export const RegisterController = graphql<Props, SignUpUserMutation, SignUpUserMutationVariables>(signUpUserMutation)(C)
+export const ConfirmEmailController = graphql<Props, ConfirmEmailMutation, ConfirmEmailMutationVariables>(confirmEmailMutation)(E)

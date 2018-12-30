@@ -34,10 +34,9 @@ export class L extends React.PureComponent<ChildMutateProps<Props, LoginUserMuta
 }
 
 const loginUserMutation = gql`
-    mutation LoginUserMutation ( $email: String!, $password: String! ) {
-        loginUser(
-            data: { email: $email, password: $password }
-        ) 
+    mutation LoginUserMutation ( $email: String!, $password: String! ) 
+    {
+        loginUser( data: { email: $email, password: $password } ) 
         { token error } 
     }   
 `

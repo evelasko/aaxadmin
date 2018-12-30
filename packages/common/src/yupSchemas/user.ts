@@ -4,6 +4,14 @@ export const emailNotLongEnough = "email must be at least 3 characters"
 export const passwordNotLongEnough = "password must be at least 3 characters"
 export const invalidEmail = "email must be a valid email"
 
+export const validPasswordSchema = yup.object().shape({
+    password: yup
+        .string()
+        .min(8, passwordNotLongEnough)
+        .max(255)
+        .required()    
+})
+
 export const validUserSchema = yup.object().shape({
     email: yup
         .string()

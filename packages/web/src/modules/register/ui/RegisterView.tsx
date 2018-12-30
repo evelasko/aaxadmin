@@ -13,6 +13,7 @@ interface FormValues {
 }
 
 interface Props {
+    onFinish: () => void
     submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>
 }
 
@@ -35,7 +36,7 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
                 component={InputField} 
             />
             <FormItem>
-            <a className="login-form-forgot" href="">Forgot password</a>
+                <Link to="/forgot">Forgot password</Link>
             </FormItem>
             <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button">
@@ -57,5 +58,6 @@ export const RegisterView = withFormik<Props, FormValues>({
     handleSubmit: async (values, {props, setErrors, setSubmitting}) => {
         const errors = await props.submit(values)
         if (errors) { setErrors(errors) }
+        else { props.onFinish() }
     }
 })(C)
