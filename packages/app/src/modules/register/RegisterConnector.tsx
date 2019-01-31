@@ -7,7 +7,7 @@ export class RegisterConnector extends React.PureComponent {
         return ( 
             <RegisterController>
                 {
-                    ({submit}) =>    <RegisterView submit={submit} /> 
+                    ({submit}) => <RegisterView submit={submit} /> 
                 }
             </RegisterController>
         )

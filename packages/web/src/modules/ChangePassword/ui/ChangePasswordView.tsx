@@ -14,7 +14,7 @@ interface FormValues {
 
 interface Props {
     onFinish: () => void
-    key: string
+    key?: string
     submit: (values: ChangePasswordMutationVariables) => Promise< { [key: string]: string } | null >
 }
 
@@ -27,12 +27,12 @@ export class F extends React.PureComponent<FormikProps<FormValues> & Props> {
                 name="password" 
                 type="password" 
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any} 
-                placeholder="New password" 
+                placeholder="Nueva contraseña" 
                 component={InputField} 
             />  
             <FormItem>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                    Change Password
+                    Cambiar Contraseña
                 </Button>
             </FormItem>
         </div>
@@ -45,7 +45,7 @@ export const ChangePasswordView = withFormik<Props, FormValues>({
     validationSchema: validPasswordSchema,
     mapPropsToValues: () => ({ newPassword: ''}),
     handleSubmit: async ({newPassword}, {props, setErrors, setSubmitting}) => {
-        const errors = await props.submit({newPassword, key: props.key})
+        const errors = await props.submit({newPassword})
         if (errors) { setErrors(errors) }
         else { props.onFinish() }
     }

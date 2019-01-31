@@ -9,7 +9,7 @@ import './index.css'
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-  <Routes />
+      <Routes />
   </ApolloProvider>,
   document.getElementById('root') as HTMLElement
 )

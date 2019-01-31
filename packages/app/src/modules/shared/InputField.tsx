@@ -17,7 +17,7 @@ export class InputField extends React.Component<FieldProps<any>> {
             <Input 
                 {...props}
                 errorStyle={errStyle}
-                errorMessage={errorMsg}
+                errorMessage={errorMsg as any}
                 onChangeText={this.onChangeText}
                 value={field.value}
             />

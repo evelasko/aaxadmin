@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Form as AntForm, Icon, Button } from 'antd'
 import  { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik'
 import { validUserSchema } from '@aaxadmin/common'
-import { InputField } from '../../shared/InputField';
-import { Link } from 'react-router-dom';
+import { InputField } from '../../shared/InputField'
+import { Link } from 'react-router-dom'
 
 const FormItem = AntForm.Item
 

@@ -24,16 +24,15 @@ export class H extends React.PureComponent<ChildMutateProps<Props, ChangePasswor
         }
         return null
     }
-
     render() {
         return this.props.children({ submit: this.submit })
     }
 }
 
 const changePasswordMutation = gql`
-    mutation ChangePasswordMutation ( $newPassword: String!, $key: String! ) 
+    mutation ChangePasswordMutation ( $newPassword: String!) 
     {
-        changePassword( newPassword: $newPassword, key: $key )
+        changePassword( newPassword: $newPassword)
         { token error } 
     }   
 `

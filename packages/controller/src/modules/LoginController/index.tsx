@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, ChildMutateProps } from 'react-apollo'
+import { graphql, ChildMutateProps, withApollo, WithApolloClient } from 'react-apollo'
 import gql from 'graphql-tag'
 import { LoginUserMutation, LoginUserMutationVariables } from '../../schemaTypes'
 import { normalizeResponse } from '../../utils/normalizeResponse'
@@ -14,9 +14,15 @@ interface Props {
     ) => JSX.Element | null
 }
 
-export class L extends React.PureComponent<ChildMutateProps<Props, LoginUserMutation, LoginUserMutationVariables>> {
+export class L extends React.PureComponent<
+                            ChildMutateProps<
+                                WithApolloClient<Props>, 
+                                LoginUserMutation, 
+                                LoginUserMutationVariables
+                            >
+                        > {
     submit = async (values: LoginUserMutationVariables) => {
-        console.log('values: ', values)
+        // console.log('values: ', values)
         // const tresponse:  = await this.props.mutate({ variables: values })
         // query gets normalized from types to access inner objects...
         const response = normalizeResponse(await this.props.mutate({ variables: values }))
@@ -27,6 +33,7 @@ export class L extends React.PureComponent<ChildMutateProps<Props, LoginUserMuta
         if (this.props.onSessionId && response.data.loginUser.token) {
             this.props.onSessionId(response.data.loginUser.token)
         }
+        await this.props.client.resetStore()
         return null
     }
 
@@ -44,4 +51,4 @@ export const LoginController = graphql<
     Props, 
     LoginUserMutation, 
     LoginUserMutationVariables
-    >(loginUserMutation)(L)
+    >(loginUserMutation)(withApollo<Props>(L as any))
