@@ -2,8 +2,11 @@ import * as React from 'react'
 import { Form as AntForm, Icon, Button } from 'antd'
 import  { withFormik, FormikProps, Field, Form } from 'formik'
 import { Link } from 'react-router-dom'
+
+import { MainLogo } from '../../images/Logo'
+// import SvgLogo from '../../images/mainLogo'
 import { loginSchema } from '@aaxadmin/common'
-import { InputField } from '../../shared/InputField';
+import { InputField } from '../../shared/InputField'
 
 const FormItem = AntForm.Item
 
@@ -21,6 +24,9 @@ export class P extends React.PureComponent<FormikProps<FormValues> & Props> {
   render() {
     return (
         <div style={{marginTop: 30}}>
+        <div style={{margin: 15}}>
+            <MainLogo style={{ fontSize: '128px' }} />
+        </div>
     <Form style={{display: 'flex'}}>
         <div style={{width: 400, margin: 'auto'}}>
             <Field 

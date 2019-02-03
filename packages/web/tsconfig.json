@@ -19,7 +19,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "types": ["jest", "node", "react", "react-dom", "react-router-dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
   },
   "exclude": [
     "node_modules",
@@ -28,6 +30,7 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "config-overrides.js"
   ]
 }

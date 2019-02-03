@@ -24,12 +24,13 @@
     "react-google-maps": "^9.4.5",
     "react-places-autocomplete": "^7.2.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "3.1.0",
     "yup": "^0.26.6"
   },
   "scripts": {
     "start": "react-scripts-ts start",
+    "startr": "react-app-rewired start --scripts-version react-scripts-ts",
     "build": "react-scripts-ts build",
+    "buildr": "react-app-rewired build --scripts-version react-scripts-ts",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
@@ -44,6 +45,12 @@
     "@types/react-places-autocomplete": "^7.2.3",
     "@types/react-router-dom": "^4.3.1",
     "@types/yup": "^0.26.3",
+    "cross-env": "^5.2.0",
+    "less-plugin-variables-output": "attilah/less-plugin-variables-output#calllback",
+    "react-app-rewire-less": "^2.1.3",
+    "react-app-rewired": "1.6.2",
+    "react-scripts-ts": "^3.1.0",
+    "ts-import-plugin": "^1.5.5",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
