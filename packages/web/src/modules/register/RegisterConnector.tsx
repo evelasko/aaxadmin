@@ -6,7 +6,11 @@ import { RegisterView } from './ui/RegisterView';
 
 export class RegisterConnector extends React.PureComponent<RouteComponentProps<{}>> {
     onFinish = () => {
-        this.props.history.push("/m/confirm-email", {message: "Please check your email to confirm your account"})
+        this.props.history.push("/m/confirm-email", {
+            title:"Tu cuenta ha sido creada",
+            message: "Por favor, sigue las instrucciones del email que te hemos enviado para confirmarla y acceder al contenido.",
+            type: "success"
+        })
     }
     render() {
         return (

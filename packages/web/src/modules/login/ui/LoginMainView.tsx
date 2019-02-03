@@ -17,7 +17,7 @@ interface Props {
     submit: (values: FormValues) => Promise< { [key: string]: string } | null >
 }
 
-export class C extends React.PureComponent<FormikProps<FormValues> & Props> {    
+export class P extends React.PureComponent<FormikProps<FormValues> & Props> {    
   render() {
     return (
         <div style={{marginTop: 30}}>
@@ -54,7 +54,7 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
   }
 }
 
-export const LoginView = withFormik<Props, FormValues>({
+export const LoginMainView = withFormik<Props, FormValues>({
     validationSchema: loginSchema,
     validateOnBlur: false,
     validateOnChange: false,
@@ -64,4 +64,4 @@ export const LoginView = withFormik<Props, FormValues>({
         if (errors) { setErrors(errors) }
         else { props.onFinish() }
     }
-})(C)
+})(P)

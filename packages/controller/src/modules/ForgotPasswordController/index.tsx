@@ -4,6 +4,13 @@ import gql from 'graphql-tag'
 import { ForgotPasswordMutation, ForgotPasswordMutationVariables } from '../../schemaTypes';
 import { normalizeResponse } from '../../utils/normalizeResponse'
 
+const forgotPasswordMutation = gql`
+    mutation ForgotPasswordMutation ( $email: String! ) 
+    { sendForgotPasswordEmail( email: $email )
+        { token error } 
+    }   
+`
+
 interface Props {
     children: ( 
         data: {
@@ -24,18 +31,9 @@ export class F extends React.PureComponent<ChildMutateProps<Props, ForgotPasswor
         }
         return null
     }
-
     render() {
         return this.props.children({ submit: this.submit })
     }
 }
-
-const forgotPasswordMutation = gql`
-    mutation ForgotPasswordMutation ( $email: String! ) 
-    {
-        sendForgotPasswordEmail( email: $email )
-        { token error } 
-    }   
-`
 
 export const ForgotPasswordController = graphql<Props, ForgotPasswordMutation, ForgotPasswordMutationVariables>(forgotPasswordMutation)(F)

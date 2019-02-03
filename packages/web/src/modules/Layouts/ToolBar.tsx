@@ -23,7 +23,7 @@ export const ToolBar:React.SFC<Props> = ({ ...props }) => {
             }
             <Col span={4}>
                 <Popover    content={user ? <UserProfileView user={user} goLogout={goLogout}/> : <LoginComponent /> } 
-                            title={user ? "Tu perfil" : "Login"}
+                            title={user ? "Tu perfil" : "Iniciar Sesión"}
                             trigger="hover"
                 >
                     <Icon type={user ? "user" : "login"} style={iconStyle}/>

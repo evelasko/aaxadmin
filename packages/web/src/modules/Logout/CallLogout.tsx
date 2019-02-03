@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Redirect } from 'react-router-dom'
 
 interface Props {
     logout: () => void
@@ -11,5 +12,5 @@ export class CallLogout extends React.PureComponent<Props> {
         this.props.onFinish()
     }
     render() {
-        return null
+        return <Redirect to='/login' />
 }}

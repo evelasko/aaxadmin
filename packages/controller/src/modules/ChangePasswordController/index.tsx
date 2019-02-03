@@ -4,6 +4,14 @@ import gql from 'graphql-tag'
 import { ChangePasswordMutation, ChangePasswordMutationVariables } from '../../schemaTypes';
 import { normalizeResponse } from '../../utils/normalizeResponse'
 
+const changePasswordMutation = gql`
+    mutation ChangePasswordMutation ( $key: String, $newPassword: String!) 
+    {
+        changePassword( key: $key, newPassword: $newPassword)
+        { token error } 
+    }   
+`
+
 interface Props {
     children: ( 
         data: {
@@ -15,11 +23,10 @@ interface Props {
 
 export class H extends React.PureComponent<ChildMutateProps<Props, ChangePasswordMutation, ChangePasswordMutationVariables>> {
     submit = async (values: ChangePasswordMutationVariables) => {
-        console.log('values: ', values)
         const response = normalizeResponse(await this.props.mutate({ variables: values }))
         console.log('response: ', response)
         if (response.data.changePassword.error) {
-            console.log('error inside controller...')
+            console.log(response.data.changePassword.error)
             return {password: response.data.changePassword.error}
         }
         return null
@@ -28,13 +35,5 @@ export class H extends React.PureComponent<ChildMutateProps<Props, ChangePasswor
         return this.props.children({ submit: this.submit })
     }
 }
-
-const changePasswordMutation = gql`
-    mutation ChangePasswordMutation ( $newPassword: String!) 
-    {
-        changePassword( newPassword: $newPassword)
-        { token error } 
-    }   
-`
 
 export const ChangePasswordController = graphql<Props, ChangePasswordMutation, ChangePasswordMutationVariables>(changePasswordMutation)(H)

@@ -32,19 +32,19 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
                 name="password" 
                 type="password" 
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} /> as any} 
-                placeholder="Password" 
+                placeholder="Contraseña" 
                 component={InputField} 
             />
             <FormItem>
-                <Link to="/forgot">Forgot password</Link>
+                <Link to="/forgot">Recordar contraseña</Link>
             </FormItem>
             <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button">
-                Register
+                Regístrate!
             </Button>
             </FormItem>
             <FormItem>
-            Or <Link to="/login">Log in now!</Link>
+            o <Link to="/login">inicia sesión</Link>
             </FormItem>
         </div>
       </Form>

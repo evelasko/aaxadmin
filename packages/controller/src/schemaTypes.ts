@@ -37,6 +37,7 @@ export interface ChangePasswordMutation {
 }
 
 export interface ChangePasswordMutationVariables {
+  key?: string | null;
   newPassword: string;
 }
 
@@ -451,7 +452,7 @@ export interface LogoutMutation {
 // ====================================================
 
 export interface SignUpUserMutation_signUpUser {
-  __typename: "RegisterPayload";
+  __typename: "AuthPayload";
   token: string | null;
   error: string | null;
 }

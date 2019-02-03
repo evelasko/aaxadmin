@@ -4,6 +4,10 @@ import gql from 'graphql-tag'
 import { ConfirmEmailMutation, ConfirmEmailMutationVariables } from '../../schemaTypes';
 import { normalizeResponse } from '../../utils/normalizeResponse'
 
+const confirmEmailMutation = gql`
+    mutation ConfirmEmailMutation ( $key: String! ) 
+    { confirmEmail( key: $key ) { token error } }   
+`
 interface Props {
     children: ( 
         data: {
@@ -20,7 +24,7 @@ export class E extends React.PureComponent<ChildMutateProps<Props, ConfirmEmailM
         console.log('response: ', response)
         if (response.data.confirmEmail.error) {
             console.log('error inside controller...')
-            return {email: response.data.confirmEmail.error}
+            return {error: response.data.confirmEmail.error}
         }
         return null
     }
@@ -29,13 +33,5 @@ export class E extends React.PureComponent<ChildMutateProps<Props, ConfirmEmailM
         return this.props.children({ submit: this.submit })
     }
 }
-
-const confirmEmailMutation = gql`
-    mutation ConfirmEmailMutation ( $key: String! ) 
-    {
-        confirmEmail( key: $key )
-        { token error } 
-    }   
-`
 
 export const ConfirmEmailController = graphql<Props, ConfirmEmailMutation, ConfirmEmailMutationVariables>(confirmEmailMutation)(E)

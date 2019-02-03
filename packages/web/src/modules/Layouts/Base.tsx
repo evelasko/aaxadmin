@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { Layout, Icon, Row, Col, Input, Drawer } from 'antd'
 import { withUser, WithUser } from '@aaxadmin/controller'
+import { Redirect } from 'react-router-dom'
 
-import { ContentHandler } from './ContentHandler';
+import { ContentHandler } from './ContentHandler'
 import { FormHandler } from './FormHandler'
-import { MenuHandler } from './MenuHandler';
-import { ToolBar } from './ToolBar';
+import { MenuHandler } from './MenuHandler'
+import { ToolBar } from './ToolBar'
 import { logoutUser } from '../Logout'
 
 const { Header, Sider, Content } = Layout
@@ -27,15 +28,19 @@ export class BaseLayout extends React.PureComponent<WithUser> {
     }
     menuHandler = ({key}: any) => { this.setState({key, search: ''}) }
     
+    componentWillMount() {
+        if (this.props.user) { this.setState({me: this.props.user})}
+    }
+    componentWillUpdate() {
+        if (!this.state.me && this.props.user) { this.setState({me: this.props.user})}
+    }
+
     render() {
-        const { user } = this.props
         const userLoading = this.props.loading
         if ( userLoading ) { return <Icon type="loading" /> }
-        if ( !user ) { console.log('render(): user not logged in') }
-        if (user) { 
-            console.log('user object from render(): ', user) 
-            this.setState({me: user})
-        }
+        else if ( !this.props.user ) { return <Redirect to="/login" /> }
+        // if (user) { this.setState({me: user}) }
+        const { user } = this.props
         return (
         <div>
         <Layout>
@@ -46,7 +51,7 @@ export class BaseLayout extends React.PureComponent<WithUser> {
                 style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0}}
             >
                 <div className="logo" />
-                <MenuHandler onSelect={this.menuHandler} user={this.state.me} />
+                <MenuHandler onSelect={this.menuHandler} user={user} />
             </Sider>
         <Layout style={this.state.collapsed ? {marginLeft: 80} : {marginLeft: 200}}>
             <Header style={{ background: '#fff', padding: 0 }}>
@@ -58,19 +63,19 @@ export class BaseLayout extends React.PureComponent<WithUser> {
                         <Search placeholder={`buscar ${this.state.key.toLowerCase()}`} onChange={this.handleSearch} style={{ width: 200 }} />
                     </Col>
                     <Col span={6} style={{textAlign:'right'}}>
-                        <ToolBar user={this.state.me} showDrawer={this.showDrawer} goLogout={this.goLogOut} />
+                        <ToolBar user={user} showDrawer={this.showDrawer} goLogout={this.goLogOut} />
                     </Col>
                 </Row>
             </Header>
             <Content style={{ margin: '10px 10px', padding: 0, minHeight: 280 }} >
                 <div style={{width: '100%', overflow: 'scroll'}}>
-                    <ContentHandler page={this.state.key} search={this.state.search} user={this.state.me}/>
+                    <ContentHandler page={this.state.key} search={this.state.search} user={user}/>
                 </div>
             </Content>
         </Layout>
       </Layout>
       <Drawer title={`Create ${this.state.key}`} placement="right" width={400} closable={false} onClose={this.onClose} visible={this.state.visible}>
-        <FormHandler page={this.state.key} user={this.state.me} onFinish={this.onClose} />
+        <FormHandler page={this.state.key} user={user} onFinish={this.onClose} />
       </Drawer>
       </div>
     )

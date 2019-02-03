@@ -4,6 +4,10 @@ import { RouteProps, Route, RouteComponentProps, Redirect } from 'react-router' 
 import gql from 'graphql-tag'
 import { MeQuery } from '../../schemaTypes'
 
+export const meQuery = gql`
+ query MeQuery { meResult { name lastname email group isAdmin } error }
+`
+
 type Props = RouteProps
 
 export class M extends React.PureComponent<ChildProps<Props, MeQuery>> {
@@ -26,9 +30,5 @@ export class M extends React.PureComponent<ChildProps<Props, MeQuery>> {
         const {data: _, component: __, ...rest} = this.props
         return ( <Route {...rest} render={this.renderRoute} /> )
 }}
-
-export const meQuery = gql`
- query MeQuery { me { id name lastname email group isAdmin } }
-`
 
 export const AuthRoute = graphql<Props, MeQuery>(meQuery)(M)
