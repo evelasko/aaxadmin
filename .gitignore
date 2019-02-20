@@ -8,3 +8,5 @@ dump.rdb
 .env
 dist
 .netlify
+yarn.lock
+netlify.toml
