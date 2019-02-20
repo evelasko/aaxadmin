@@ -16,5 +16,11 @@
   },
   "dependencies": {
     "yup": "^0.26.6"
+  },
+  "resolutions": {
+    "fsevents": "^1.2.7"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.2.7"
   }
 }
