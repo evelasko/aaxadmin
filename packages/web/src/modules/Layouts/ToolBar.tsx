@@ -1,7 +1,7 @@
 import { Col, Icon, Popover, Row } from 'antd';
 import * as React from 'react';
 import { LoginComponent } from '../login/LoginComponent';
-import { UserProfileView } from '../user/UserProfileView';
+import { UserProfileView } from '../User/UserProfileView';
 
 
 interface Props {
