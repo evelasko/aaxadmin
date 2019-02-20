@@ -25,5 +25,11 @@
     "name": "aaxadmin",
     "devDependencies": {
         "lerna": "^3.8.0"
-    }
+    },
+    "resolutions": {
+        "fsevents": "^1.2.7"
+      },
+      "optionalDependencies": {
+        "fsevents": "^1.2.7"
+      }
 }
