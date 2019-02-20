@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Menu, Icon } from 'antd'
+import { Icon, Menu } from 'antd';
+import * as React from 'react';
+import { GroupRequestView } from '../User/groupRequest/groupRequestView';
 
-import { GroupRequestView } from '../user/groupRequest/groupRequestView'
 
 const SubMenu = Menu.SubMenu
 

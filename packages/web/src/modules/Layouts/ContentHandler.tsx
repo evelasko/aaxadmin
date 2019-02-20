@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Query } from 'react-apollo'
-import * as _ from 'lodash'
-import { alertsQuery, callsQuery, newsQuery, eventsQuery, venuesQuery, usersQuery } from '@aaxadmin/controller'
+import { alertsQuery, callsQuery, eventsQuery, newsQuery, usersQuery, venuesQuery } from '@aaxadmin/controller';
+import * as _ from 'lodash';
+import * as React from 'react';
+import { Query } from 'react-apollo';
+import { FindEventList } from '../events/find/FindEventList';
+import { FindNewsList } from '../news/find/FindNewsList';
+import { FindUsersList } from '../User/find/UsersList';
+import { GroupRequestView } from '../User/groupRequest/groupRequestView';
+import { FindVenueList } from '../venues/find/FindVenueList';
 
-import { FindNewsList } from '../news/find/FindNewsList'
-import { FindEventList } from '../events/find/FindEventList'
-import { FindVenueList } from '../venues/find/FindVenueList'
-import { FindUsersList } from '../user/find/UsersList'
-import { GroupRequestView } from '../user/groupRequest/groupRequestView'
 
 interface Props {
     search?: string
