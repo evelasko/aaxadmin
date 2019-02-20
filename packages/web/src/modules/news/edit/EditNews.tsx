@@ -14,7 +14,7 @@ interface EditNewsComponentProps {
 }
 
 export class EditNewsComponent extends React.PureComponent<EditNewsComponentProps> {
-    state = {initialValues: undefined} 
+    state = {initialValues: undefined, submitting: false} 
 
     componentWillMount() {
         const { original } = this.props
@@ -26,7 +26,9 @@ export class EditNewsComponent extends React.PureComponent<EditNewsComponentProp
         console.log('Initial values: ', initialValues)
         this.setState({initialValues})
     }
-
+    setSubmitting() {
+        this.setState({submitting: true})
+    }
     expirationWarning = () => {
         Modal.warning({
           title: '¡Atención!',
@@ -40,6 +42,7 @@ export class EditNewsComponent extends React.PureComponent<EditNewsComponentProp
             <div>
                 <NewsForm 
                     submit={ async(values: NewsFormValues, {resetForm}: FormikActions<NewsFormValues>) => {
+                        this.setSubmitting()
                         const omites = ['imageURL'] // server will update image if provided to upload
                         let reValues:any = values
                         if (reValues.image === null ) { omites.push('image') }
@@ -60,6 +63,7 @@ export class EditNewsComponent extends React.PureComponent<EditNewsComponentProp
                     onFinish={onFinish} 
                     initialValues={this.state.initialValues}
                     buttonText="Guardar Cambios"
+                    submitting={this.state.submitting}
                 /> 
             </div>
         )

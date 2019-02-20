@@ -4,7 +4,8 @@ import { Form as AntForm, Button, Select, Row, Col } from 'antd'
 import  { Formik, Field, Form, FormikActions } from 'formik'
 import { Query } from 'react-apollo'
 import * as moment from 'moment'
-import { withCreateEvent, WithCreateEvent, UserGroup, venuesQuery } from '@aaxadmin/controller';
+import { withCreateEvent, WithCreateEvent, UserGroup, venuesQuery } from '@aaxadmin/controller'
+import { UserGroups } from '@aaxadmin/common'
 import { ImageFile } from 'react-dropzone'
 
 import { InputField } from '../../shared/InputField'
@@ -33,11 +34,15 @@ interface ExtraProps {
 }
 export class E extends React.PureComponent<
         RouteComponentProps<{}> & WithCreateEvent & ExtraProps> {
+    
+    state = { submitting: false }
+            
     disabledDate(current: any) {
         // Can not select days before today and today
         return current && current < moment().add(1, 'day');
     }  
     submit = async (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
+        this.setState({ submitting: true})
         const response = await this.props.createEvent(values)
         setSubmitting(false)
         this.props.onFinish()
@@ -48,7 +53,6 @@ export class E extends React.PureComponent<
         this.props.onFinish()
     }
     render() {
-
         return (
             <Formik<{}, FormValues> initialValues={{
                 title: '',
@@ -65,21 +69,21 @@ export class E extends React.PureComponent<
                 { ({ setFieldValue, values }) => (
                     <Form style={{display: 'flex'}}>
                         <div style={{width: 400, margin: 'auto'}}>
-                        <FormItem label="Title" style={{marginBottom: 0}}>
+                        <FormItem label="Título" style={{marginBottom: 0}}>
                             <Field 
                                 name="title" 
                                 placeholder="Título" 
                                 component={InputField} 
                             />
                         </FormItem>
-                        <FormItem label="Subtitle" style={{marginBottom: 0}}>
+                        <FormItem label="Subtítulo" style={{marginBottom: 0}}>
                             <Field
                                 name="subtitle"
                                 placeholder="Subtítulo"
                                 component={InputField}
                             />
                         </FormItem>
-                        <FormItem label="Body" style={{marginBottom: 0}}>
+                        <FormItem label="Descripción" style={{marginBottom: 0}}>
                             <Field
                                 name="body"
                                 placeholder=""
@@ -92,9 +96,9 @@ export class E extends React.PureComponent<
                                 component={DropzoneField}
                             />
                         </FormItem>
-                        <Row>
+                        <Row gutter={8}>
                             <Col span={12}>
-                                <FormItem label="Date" style={{marginBottom: 0}}>
+                                <FormItem label="Fecha" style={{marginBottom: 0}}>
                                     <Field
                                         name="date"
                                         onBlur={console.log('_')}
@@ -109,7 +113,7 @@ export class E extends React.PureComponent<
                                 </FormItem>
                             </Col>
                             <Col span={12}>
-                                <FormItem label="Delete upon expiration" style={{marginBottom: 0}}>
+                                <FormItem label="Eliminar después de la fecha" style={{marginBottom: 0}}>
                                     <Field  name="deleteUpon" 
                                             defaultChecked={true}
                                             component={CheckBoxField}
@@ -119,7 +123,7 @@ export class E extends React.PureComponent<
                         </Row>
                         <Row gutter={8}>
                             <Col span={12}>
-                                <FormItem label="Venue" style={{marginBottom: 0}}>
+                                <FormItem label="Recinto" style={{marginBottom: 0}}>
                                     <Query query={venuesQuery}>
                                         {
                                             ({ loading, error, data }) => {
@@ -130,7 +134,7 @@ export class E extends React.PureComponent<
                                                     <Field  name="venue" 
                                                             component={SelectSearchField}
                                                             showSearch
-                                                            placeholder="Select venue"
+                                                            placeholder="Seleccione recinto"
                                                             optionFilterProp="children"
                                                             filterOption={(input: any, option: any) => {
                                                                 if (typeof option.props.children === 'string') {
@@ -148,13 +152,13 @@ export class E extends React.PureComponent<
                                 </FormItem>
                             </Col>
                             <Col span={12}>
-                                <FormItem label="Target" style={{marginBottom: 0}}>
+                                <FormItem label="Difusión" style={{marginBottom: 0}}>
                                     <Field  name="target"
                                             component={SelectField}
                                     >
-                                        <Option value={UserGroup.PUBLIC}>Public</Option>
-                                        <Option value={UserGroup.STAFF}>Staff</Option>
-                                        <Option value={UserGroup.STUDENT}>Student</Option>
+                                        <Option value={UserGroup.PUBLIC}>{UserGroups[UserGroup.PUBLIC][0]}</Option>
+                                        <Option value={UserGroup.STAFF}>{UserGroups[UserGroup.STAFF][0]}</Option>
+                                        <Option value={UserGroup.STUDENT}>{UserGroups[UserGroup.STUDENT][0]}</Option>
                                     </Field>
                                 </FormItem>
                             </Col>
@@ -163,10 +167,11 @@ export class E extends React.PureComponent<
                             <Row gutter={12}>
                                 <Col span={12}>
                                     <Button type="primary" 
+                                            loading={ this.state.submitting }
                                             htmlType="submit" 
                                             className="login-form-button"
                                     >
-                                        Create Event
+                                        Crear Evento
                                     </Button>
                                 </Col>
                                 <Col span={12}>
@@ -174,7 +179,7 @@ export class E extends React.PureComponent<
                                                 block
                                                 onClick={this.finish}
                                                 >
-                                            Cancel
+                                            Cancelar
                                         </Button>
                                 </Col>
                             </Row>

@@ -1,3 +1,5 @@
+const rewireSVGR = require('react-app-rewire-svgr');
+const rewireInlineImportGraphqlAst = require('react-app-rewire-inline-import-graphql-ast');
 const tsImportPluginFactory = require('ts-import-plugin');
 const { getLoader, loaderNameMatches } = require('react-app-rewired');
 const rewireLess = require('react-app-rewire-less');
@@ -43,9 +45,17 @@ module.exports = function override(config, env) {
             }
         }
     );
+    // config SVGR loader
+    config = rewireSVGR(config, env);
+
+    // config graphql ast inline import
+    config = rewireInlineImportGraphqlAst(config, env);
+    
+    // config style variables override
     config = rewireLess.withLoaderOptions({ 
         javascriptEnabled: true ,
         modifyVars: lessOverrides
     })(config, env);
+
     return config;
 }

@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { MeQuery } from '../../schemaTypes'
 
 export const meQuery = gql`
- query MeQuery { meResult { name lastname email group isAdmin } error }
+ query MeQuery { me { user { id name lastname email group isAdmin } error } }
 `
 
 type Props = RouteProps

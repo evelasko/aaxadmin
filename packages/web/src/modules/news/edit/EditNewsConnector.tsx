@@ -10,7 +10,11 @@ interface ExtraProps {
 }
 
 export class EditNews extends React.PureComponent<RouteComponentProps<{}> & ExtraProps> {
+    
+    state = {submitting: false}
+    
     submit = async (values: NewsFormValues, {setSubmitting, resetForm}: FormikActions<NewsFormValues>) => {
+        this.setState({submitting: true})
         console.log('New Edit News Form Values: ', values)
         // const response = await this.props.createNews(values)
         // setSubmitting(false)
@@ -29,6 +33,7 @@ export class EditNews extends React.PureComponent<RouteComponentProps<{}> & Extr
                 submit={this.submit} 
                 onFinish={this.finish} 
                 initialValues={{...defaultNewsFormValues}}
+                submitting={this.state.submitting}
             />
         )
     }

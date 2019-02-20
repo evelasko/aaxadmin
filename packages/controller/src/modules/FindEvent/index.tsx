@@ -7,7 +7,7 @@ import { EventsQuery, EventsQuery_events } from '../../schemaTypes'
 export const eventsQuery = gql`
 query EventsQuery ( $query: String )
     { events ( query: $query) 
-    { id title target author { name } date imageURL venue { name placeID } } }
+    { id title target author { id name } date imageURL venue { name placeID } } }
 `
 export interface WithFindEvents {
     events: EventsQuery_events[]

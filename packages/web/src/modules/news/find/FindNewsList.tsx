@@ -4,10 +4,10 @@ import * as moment from 'moment'
 import { MutationFn } from 'react-apollo'
 
 import { DeleteNews } from '@aaxadmin/controller'
+import { Categories, UserGroups } from '@aaxadmin/common'
 
 import { ViewNews } from '../view/ViewNews'
 import { EditNewsComponent } from '../edit/EditNews'
-import { Categories } from '../../shared/Strings'
 
 const confirm = Modal.confirm
 
@@ -52,13 +52,13 @@ export class FindNewsList extends React.PureComponent<DataProps> {
                     itemLayout="horizontal"
                     dataSource={news}
                     renderItem={(item: any) => {
-                        const actions = [ <a key={`v${item.id}`}><Icon type="eye" onClick={() => {this.setState({ visible: true, item: item.id })}} /></a> ]
+                        const actions = [ <a key={`v${item.id}`}><Icon type="eye" theme="filled" onClick={() => {this.setState({ visible: true, item: item.id })}} /></a> ]
                         if (user && item.author.id === user.id) {
-                            actions.push( <a key={`e${item.id}`}><Icon type="edit" onClick={() => {this.setEdit(item, true)}} /></a>,
+                            actions.push( <a key={`e${item.id}`}><Icon type="edit" theme="filled"  onClick={() => {this.setEdit(item, true)}} /></a>,
                                             <DeleteNews>
                                                 {({deleteNews}) => 
                                                     <a key={`m${item.id}`}>
-                                                        <Icon type="delete" onClick={() => { this.performDelete(deleteNews, item.id, item.category) }} />
+                                                        <Icon type="delete" theme="filled"  onClick={() => { this.performDelete(deleteNews, item.id, item.category) }} />
                                                     </a>}
                                             </DeleteNews>
                                         )
@@ -68,13 +68,13 @@ export class FindNewsList extends React.PureComponent<DataProps> {
                                         extra={ user && user.isAdmin ?
                                             <div style={{fontSize: '.8em', marginTop:5}}>
                                                 <Icon type="user" style={{padding: '0px 5px 0px 0px'}} />
-                                                {item.author.name}
+                                                    {item.author.name}
                                                 <Icon type="clock-circle" style={{padding:'0px 5px 0px 5px'}} /> 
-                                                <span style={moment(item.expiration).isBefore() ? {color: 'red'} : {} }>
+                                                <span style={moment(item.expiration).isBefore() ? {color: '#f17a61'} : {} }>
                                                     {moment(item.expiration).format('DD-MM-YY HH:mm')}
                                                 </span>
                                                 <Icon type="team" style={{padding: '0px 5px 0px 5px'}} />
-                                                {item.target}
+                                                {UserGroups[item.target][0]}
                                                 {item.featured && <Icon type="star" theme="filled" style={{padding: '0px 5px 0px 5px'}} />}
                                             </div>
                                             :

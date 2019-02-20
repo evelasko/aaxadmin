@@ -3,7 +3,8 @@ import { RouteComponentProps } from 'react-router-dom'
 import { Form as AntForm, Button, Select, Row, Col } from 'antd'
 import  { Formik, Field, Form, FormikActions } from 'formik'
 import * as moment from 'moment'
-import { withCreateNews, WithCreateNews, NewsCategory, UserGroup } from '@aaxadmin/controller';
+import { withCreateNews, WithCreateNews, NewsCategory, UserGroup } from '@aaxadmin/controller'
+import { UserGroups } from '@aaxadmin/common'
 import { ImageFile } from 'react-dropzone'
 
 import { InputField } from '../../shared/InputField'
@@ -33,6 +34,9 @@ interface ExtraProps {
 
 export class N extends React.PureComponent<
         RouteComponentProps<{}> & WithCreateNews & ExtraProps> {
+    
+    state = { submitting: false }
+
     handleChangeCategory(value: any) {
         console.log(`selected ${value}`);
     }
@@ -44,6 +48,7 @@ export class N extends React.PureComponent<
         return current && current < moment().add(1, 'day');
     }  
     submit = async (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
+        this.setState({submitting: true})
         const response = await this.props.createNews(values)
         setSubmitting(false)
         console.log('RESPONSE FROM FORM SUBMISSION: ', response)
@@ -51,9 +56,7 @@ export class N extends React.PureComponent<
         resetForm()
         console.log('finished')
     }
-    finish = () => {
-        this.props.onFinish()
-    }
+    finish = () => { this.props.onFinish() }
     render() {
         return (
             <Formik<{}, FormValues> initialValues={{
@@ -128,15 +131,16 @@ export class N extends React.PureComponent<
                                     <Field  name="target"
                                             component={SelectField}
                                     >
-                                        <Option value={UserGroup.PUBLIC}>Public</Option>
-                                        <Option value={UserGroup.STAFF}>Staff</Option>
-                                        <Option value={UserGroup.STUDENT}>Student</Option>
+                                        <Option value={UserGroup.PUBLIC}>{UserGroups[UserGroup.PUBLIC][0]}</Option>
+                                        <Option value={UserGroup.STAFF}>{UserGroups[UserGroup.STAFF][0]}</Option>
+                                        <Option value={UserGroup.STUDENT}>{UserGroups[UserGroup.STUDENT][0]}</Option>
                                     </Field>
                         </FormItem>
                         <FormItem>
                             <Row gutter={12}>
                                 <Col span={12}>
                                     <Button type="primary" 
+                                            loading={this.state.submitting}
                                             htmlType="submit" 
                                             className="login-form-button"
                                             block

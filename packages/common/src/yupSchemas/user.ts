@@ -1,8 +1,8 @@
 import * as yup from 'yup'
 
-export const emailNotLongEnough = "email must be at least 3 characters"
-export const passwordNotLongEnough = "password must be at least 3 characters"
-export const invalidEmail = "email must be a valid email"
+export const emailNotLongEnough = "email debe tener al menos tres caracteres"
+export const passwordNotLongEnough = "la contraseña debe tener al menos 8 caracteres"
+export const invalidEmail = "debe introducir un email válido"
 
 export const validPasswordSchema = yup.object().shape({
     password: yup
@@ -23,7 +23,13 @@ export const validUserSchema = yup.object().shape({
         .string()
         .min(8, passwordNotLongEnough)
         .max(255)
-        .required()
+        .required(),
+    name: yup
+        .string()
+        .required('Nombre es un campo obligatorio'),
+    lastname: yup
+        .string()
+        .required('Apellidos es un campo obligatorio')
 })
 
 const invalidLogin = 'invalid login'

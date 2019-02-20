@@ -19,6 +19,7 @@ const ProfileView: React.SFC<DataProps & RouteComponentProps> = ({...props}) => 
     }
     return (
             <Card
+                style={{backgroundColor: 'transparent'}}
                 bordered={false}
                 actions={[
                     (<Tooltip title="editar pefil"><Icon key="edit" type="edit" /></Tooltip>),

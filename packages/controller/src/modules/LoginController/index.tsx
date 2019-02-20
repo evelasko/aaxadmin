@@ -30,13 +30,13 @@ export class L extends React.PureComponent<
         const response = normalizeResponse(await this.props.mutate({ variables: values }))
         if (response.data.loginUser.error) {
             console.log(response.data.loginUser.error)
-            return {email: response.data.loginUser.error}
+            return {error: response.data.loginUser.error}
         }
         if (this.props.onSessionId && response.data.loginUser.token) {
             this.props.onSessionId(response.data.loginUser.token)
         }
         await this.props.client.resetStore()
-        return null
+        return {error: null}
     }
     render() { return this.props.children({ submit: this.submit }) }
 }

@@ -37,15 +37,12 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
                 component={InputField} 
             />
             <FormItem>
-                <Link to="/forgot">Recordar contraseña</Link>
-            </FormItem>
-            <FormItem>
             <Button type="primary" htmlType="submit" className="login-form-button">
                 Iniciar sesión!
             </Button>
             </FormItem>
             <FormItem>
-            o <Link to="/register">regístrate aquí</Link>
+            <Link to="/forgot">Recordar contraseña</Link> o <Link to="/register">regístrate aquí</Link>
             </FormItem>
         </div>
       </Form>
@@ -60,8 +57,9 @@ export const LoginView = withFormik<Props, FormValues>({
     validateOnChange: false,
     mapPropsToValues: () => ({ email: '', password: ''}),
     handleSubmit: async (values, {props, setErrors, setSubmitting}) => {
-        const errors = await props.submit(values)
-        if (errors) { setErrors(errors) }
+        const errors:any = await props.submit(values)
+        console.log('Response from login mutation after controller: ', errors)
+        if (errors.error === '@loginUser: eMail not verified') { setErrors({email: 'Tu email no está verificado. Te hemos enviado otro para confirmar tu dirección. Si no te ha llegado por favor contacta con el servicio técnico'}) }
         else { props.onFinish() }
     }
 })(C)

@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { Form as AntForm, Button, Row, Col } from 'antd'
+import { Form as AntForm, Button, Row, Col, Divider, message } from 'antd'
 import  { Formik, Field, Form, FormikActions } from 'formik'
 
 import { withCreateVenue, WithCreateVenue } from '@aaxadmin/controller';
 
-// import { PlacesField } from '../../shared/PlacesField'
-import { LocationField } from '../../shared/LocationField'
+import { PlacesField } from '../../shared/PlacesField'
 import { InputField } from '../../shared/InputField'
 
 const FormItem = AntForm.Item
@@ -22,15 +21,24 @@ interface ExtraProps {
 export class V extends React.PureComponent<
         RouteComponentProps<{}> & WithCreateVenue & ExtraProps> {
 
-    finish = () => {
-        this.props.onFinish()
-    }
+    state = { submitting: false, address: null, placeID: null }
+
+    finish = () => { this.props.onFinish() }
+
+    handleAddressInputChange = (address:string, placeID:string|null) => { 
+        console.log('e: ', address)
+        this.setState({address, placeID}) }
+
     submit = async (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
-        console.log('values: ', values)
-        await this.props.createVenue(values)
-        setSubmitting(false)
+        this.setState({submitting:true})
+        values.address = this.state.address || values.address
+        values.placeID = this.state.placeID || values.placeID
+        const res = await this.props.createVenue(values)
+        this.setState({submitting: false})
         this.props.onFinish()
         resetForm()
+        if (res.data.createVenue.id) { message.success('Recinto creado') } 
+        else { message.error('No se ha podido crear el recinto') }
     }
     render() {
         return (
@@ -44,11 +52,18 @@ export class V extends React.PureComponent<
                 { ({ setFieldValue, values }) => (
                     <Form style={{display: 'flex'}}>
                         <div style={{width: 400, margin: 'auto'}}>
-                        <FormItem label="Name">
+                        <FormItem label="Recinto">
                             <Field 
                                 name="name" 
-                                placeholder="Venue Name" 
+                                placeholder="Nombre del Recinto" 
                                 component={InputField} 
+                            />
+                        </FormItem>
+                        <Divider />
+                        <FormItem label="Buscar  Recinto en Google">
+                            < Field name="searchPlace" 
+                                    component={PlacesField} 
+                                    handleAddress={this.handleAddressInputChange}
                             />
                         </FormItem>
                         <FormItem label="Address">
@@ -56,37 +71,24 @@ export class V extends React.PureComponent<
                                 name="address"
                                 placeholder="Venue Custom Address"
                                 component={InputField}
-                            />
-                        </FormItem>
-                        <FormItem label="Google Place ID">
-                            <Field
-                                name="placeID"
-                                placeholder="Place ID from Google"
-                                component={InputField}
-                            />
-                        </FormItem>
-                        <FormItem label="Search Place">
-                            <Field
-                                name="place"
-                                component={LocationField}
+                                value={this.state.address}
+                                onChange={(e:any) => this.handleAddressInputChange(e.target.value,null)}
                             />
                         </FormItem>
                         <FormItem>
                             <Row gutter={12}>
                                 <Col span={12}>
                                     <Button type="primary" 
+                                            loading={ this.state.submitting }
                                             htmlType="submit" 
                                             className="login-form-button"
                                     >
-                                    Create Venue
+                                    Crear Recinto
                                     </Button>
                                 </Col>
                                 <Col span={12}>
-                                <Button type="default"
-                                            block
-                                            onClick={this.finish}
-                                            >
-                                        Cancel
+                                    <Button type="default" block onClick={this.finish} >
+                                        Cancelar
                                     </Button>
                                 </Col>
                             </Row>

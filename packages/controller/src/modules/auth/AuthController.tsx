@@ -16,8 +16,9 @@ export const withUser = graphql<
                                 WithUser
                             >(meQuery, {
                                 props: ({ data }) => {
-                                    let user: any
-                                    if (data && !data.loading && data.me) { user = data.me }
+                                    let user: any = null
+                                    if (data && !data.loading && data.me ) { user = data.me.user }
+                                    console.log('USER at controller: ', user)
                                     return { user, loading: data ? data.loading : false }
-                                }
+                                }, options: { fetchPolicy: 'network-only' }
                             })

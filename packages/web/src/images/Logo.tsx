@@ -1,8 +1,10 @@
-import * as React from 'react'
-import { Icon } from 'antd'
+// created with SVGR CLI command:
+// npx @svgr/cli --template svgtemplate.js --ext .ts public/images/logo.svg
 
-const logo = () => (
-    <svg viewBox="0 0 300 300">
+import * as React from "react";
+
+const SvgLogo = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 300 300" {...props}>
     <linearGradient
       id="logo_svg__a"
       gradientUnits="userSpaceOnUse"
@@ -76,8 +78,6 @@ const logo = () => (
       fill="url(#logo_svg__e)"
     />
   </svg>
-)
+);
 
-export const MainLogo = (props: any) => (
-    <Icon component={logo} {...props} />
-  );
+export default SvgLogo;

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { LoginController } from '@aaxadmin/controller'
-import { LoginView } from './ui/LoginView'
+import { LoginMainView } from './ui/LoginMainView'
 import { RouteComponentProps } from 'react-router-dom'
 
 export class LoginConnector extends React.PureComponent<RouteComponentProps<{}>> {
@@ -12,7 +12,7 @@ export class LoginConnector extends React.PureComponent<RouteComponentProps<{}>>
     render() {
         return (
             <LoginController>
-               { ({submit}) => <LoginView onFinish={this.onFinish} submit={submit} /> }
+               { ({submit}) => <LoginMainView onFinish={this.onFinish} submit={submit} /> }
             </LoginController>
         )
     }

@@ -5,7 +5,7 @@
 // GraphQL query operation: MeQuery
 // ====================================================
 
-export interface MeQuery_me {
+export interface MeQuery_me_user {
   __typename: "User";
   id: string;
   name: string | null;
@@ -15,8 +15,14 @@ export interface MeQuery_me {
   isAdmin: boolean | null;
 }
 
+export interface MeQuery_me {
+  __typename: "UserPayload";
+  user: MeQuery_me_user | null;
+  error: string | null;
+}
+
 export interface MeQuery {
-  me: MeQuery_me;
+  me: MeQuery_me | null;
 }
 
 /* tslint:disable */
@@ -143,6 +149,26 @@ export interface CreateVenueMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: DeleteEventMutation
+// ====================================================
+
+export interface DeleteEventMutation_deleteEvent {
+  __typename: "Event";
+  id: string;
+}
+
+export interface DeleteEventMutation {
+  deleteEvent: DeleteEventMutation_deleteEvent;
+}
+
+export interface DeleteEventMutationVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: DeleteNewsMutation
 // ====================================================
 
@@ -157,6 +183,48 @@ export interface DeleteNewsMutation {
 
 export interface DeleteNewsMutationVariables {
   id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: DeleteVenueMutation
+// ====================================================
+
+export interface DeleteVenueMutation_deleteVenue {
+  __typename: "Venue";
+  id: string;
+}
+
+export interface DeleteVenueMutation {
+  deleteVenue: DeleteVenueMutation_deleteVenue;
+}
+
+export interface DeleteVenueMutationVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: EditEventMutation
+// ====================================================
+
+export interface EditEventMutation_updateEvent {
+  __typename: "AuthPayload";
+  token: string | null;
+  error: string | null;
+}
+
+export interface EditEventMutation {
+  updateEvent: EditEventMutation_updateEvent;
+}
+
+export interface EditEventMutationVariables {
+  id: string;
+  data: UpdateEventInput;
 }
 
 /* tslint:disable */
@@ -178,6 +246,28 @@ export interface EditNewsMutation {
 export interface EditNewsMutationVariables {
   id: string;
   data: UpdateNewsInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: EditVenueMutation
+// ====================================================
+
+export interface EditVenueMutation_updateVenue {
+  __typename: "AuthPayload";
+  token: string | null;
+  error: string | null;
+}
+
+export interface EditVenueMutation {
+  updateVenue: EditVenueMutation_updateVenue;
+}
+
+export interface EditVenueMutationVariables {
+  id: string;
+  data: UpdateVenueInput;
 }
 
 /* tslint:disable */
@@ -297,6 +387,7 @@ export interface CallsQueryVariables {
 
 export interface EventsQuery_events_author {
   __typename: "User";
+  id: string;
   name: string | null;
 }
 
@@ -409,6 +500,27 @@ export interface ForgotPasswordMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ConfirmGroupRequest
+// ====================================================
+
+export interface ConfirmGroupRequest_confirmGroupRequest {
+  __typename: "AuthPayload";
+  token: string | null;
+  error: string | null;
+}
+
+export interface ConfirmGroupRequest {
+  confirmGroupRequest: ConfirmGroupRequest_confirmGroupRequest;
+}
+
+export interface ConfirmGroupRequestVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginUserMutation
 // ====================================================
 
@@ -464,6 +576,37 @@ export interface SignUpUserMutation {
 export interface SignUpUserMutationVariables {
   email: string;
   password: string;
+  name: string;
+  lastname: string;
+  groupRequest?: UserGroup | null;
+  nID?: string | null;
+  nIDType?: nIdType | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: UsersQuery
+// ====================================================
+
+export interface UsersQuery_users {
+  __typename: "User";
+  id: string;
+  name: string | null;
+  lastname: string | null;
+  group: UserGroup;
+  isAdmin: boolean | null;
+  groupRequest: UserGroup | null;
+}
+
+export interface UsersQuery {
+  users: UsersQuery_users[];
+}
+
+export interface UsersQueryVariables {
+  query?: string | null;
+  group?: UserGroup | null;
 }
 
 /* tslint:disable */
@@ -485,6 +628,26 @@ export enum UserGroup {
   STUDENT = "STUDENT",
 }
 
+export enum nIdType {
+  NATIONALID = "NATIONALID",
+  OTHER = "OTHER",
+  PASSPORT = "PASSPORT",
+  SOCIALSECURITY = "SOCIALSECURITY",
+}
+
+export interface UpdateEventInput {
+  title?: string | null;
+  subtitle?: string | null;
+  body?: string | null;
+  image?: any | null;
+  imageURL?: string | null;
+  date?: any | null;
+  target?: UserGroup | null;
+  published?: boolean | null;
+  deleteUpon?: boolean | null;
+  venue?: string | null;
+}
+
 export interface UpdateNewsInput {
   title?: string | null;
   subtitle?: string | null;
@@ -497,6 +660,12 @@ export interface UpdateNewsInput {
   target?: UserGroup | null;
   deleteUpon?: boolean | null;
   published?: boolean | null;
+}
+
+export interface UpdateVenueInput {
+  name?: string | null;
+  address?: string | null;
+  placeID?: string | null;
 }
 
 //==============================================================

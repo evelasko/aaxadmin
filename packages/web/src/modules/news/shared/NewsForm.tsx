@@ -49,15 +49,13 @@ interface EditNewsFormProps {
     submit: (values: NewsFormValues, actions: FormikActions<NewsFormValues>) => void
     cat?: any
     buttonText?: string
+    submitting: boolean
 }
 
 export class NewsForm extends React.PureComponent<EditNewsFormProps> {
-    handleChangeCategory(value: any) {
-        console.log(`selected ${value}`);
-    }
-    handleChangeTarget(value: boolean) {
-        console.log(`selected ${value}`);
-    }
+    
+    handleChangeCategory(value: any) { console.log(`selected ${value}`) }
+    handleChangeTarget(value: boolean) { console.log(`selected ${value}`) }
     disabledDate(current: any) {
         // Can not select days before today and today
         return current && current < moment().add(1, 'day');
@@ -158,6 +156,7 @@ export class NewsForm extends React.PureComponent<EditNewsFormProps> {
                             <Row gutter={12}>
                                 <Col span={12}>
                                     <Button type="primary" 
+                                            loading={this.props.submitting}
                                             htmlType="submit" 
                                             className="login-form-button"
                                             block

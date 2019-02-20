@@ -4,6 +4,27 @@ import gql from 'graphql-tag'
 import { SignUpUserMutation, SignUpUserMutationVariables } from '../../schemaTypes';
 import { normalizeResponse } from '../../utils/normalizeResponse'
 
+const signUpUserMutation = gql`
+    mutation SignUpUserMutation (   $email: String!, 
+                                    $password: String!, 
+                                    $name: String!, 
+                                    $lastname: String!,
+                                    $groupRequest: UserGroup
+                                    $nID: String,
+                                    $nIDType: nIdType
+                                ) 
+    {
+        signUpUser( data: { email: $email, 
+                            password: $password,
+                            name: $name, lastname: $lastname,
+                            groupRequest: $groupRequest,
+                            nID: $nID, nIDType: $nIDType
+                        } 
+                    )
+        { token error } 
+    }   
+`
+
 interface Props {
     children: ( 
         data: {
@@ -29,13 +50,5 @@ export class C extends React.PureComponent<ChildMutateProps<Props, SignUpUserMut
         return this.props.children({ submit: this.submit })
     }
 }
-
-const signUpUserMutation = gql`
-    mutation SignUpUserMutation ( $email: String!, $password: String! ) 
-    {
-        signUpUser( data: { email: $email, password: $password } )
-        { token error } 
-    }   
-`
 
 export const RegisterController = graphql<Props, SignUpUserMutation, SignUpUserMutationVariables>(signUpUserMutation)(C)

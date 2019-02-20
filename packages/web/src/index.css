@@ -1,1 +1,26 @@
 /* @import '~antd/dist/antd.css'; */
+
+#gRequest div.ant-list.ant-list-split.ant-list-bordered div.ant-list-header {
+	font-weight: bold;
+	color: #F17A61;
+}
+
+#gRequest {
+	margin-bottom: 30px;
+}
+
+#gRequest div.ant-list.ant-list-split.ant-list-bordered {
+	border-color: #F17A61;
+}
+
+input.ant-input {
+	font-weight: 300;
+}
+
+body {
+	font-weight: 300;	
+}
+
+div.ant-list-item-meta-description {
+	font-weight: 200;
+}
