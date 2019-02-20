@@ -27,7 +27,8 @@
         "lerna": "^3.8.0"
     },
     "resolutions": {
-        "fsevents": "^1.2.7"
+        "fsevents": "^1.2.7",
+        "//": "when doing a clean install make sure you get fsevents ^1.2.7"
       },
       "optionalDependencies": {
         "fsevents": "^1.2.7"
