@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Card, Icon, Tooltip, Drawer } from 'antd'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { Card, Drawer, Icon, Tooltip } from 'antd';
+import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { ChangePasswordComponent } from '../ChangePassword/ChangePasswordComponent';
 
-import { ChangePasswordComponent } from '../ChangePassword/ChangePasswordComponent'
 
 interface DataProps {
     user: any

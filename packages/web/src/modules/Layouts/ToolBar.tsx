@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Icon, Popover, Row, Col } from 'antd'
+import { Col, Icon, Popover, Row } from 'antd';
+import * as React from 'react';
+import { LoginComponent } from '../login/LoginComponent';
+import { UserProfileView } from '../user/UserProfileView';
 
-import { LoginComponent } from '../login/LoginComponent'
-import { UserProfileView } from '../user/UserProfileView'
 
 interface Props {
     showDrawer: any
