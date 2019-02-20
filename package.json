@@ -1,6 +1,8 @@
 {
+    "name": "root",
     "private": true,
     "scripts": {
+        "bootstrap": "lerna bootstrap",
         "build:web": "lerna run build --scope={@aaxadmin/common,@aaxadmin/controller,@aaxadmin/web}"
     },
     "workspaces": {
