@@ -1,20 +1,20 @@
-import * as React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { Form as AntForm, Button, Select, Row, Col } from 'antd'
-import  { Formik, Field, Form, FormikActions } from 'formik'
-import { Query } from 'react-apollo'
-import * as moment from 'moment'
-import { withCreateEvent, WithCreateEvent, UserGroup, venuesQuery } from '@aaxadmin/controller'
-import { UserGroups } from '@aaxadmin/common'
-import { ImageFile } from 'react-dropzone'
-
-import { InputField } from '../../shared/InputField'
-import { SelectField } from '../../shared/SelectField'
-import { CheckBoxField } from '../../shared/CheckBoxField'
-import { DropzoneField } from '../../shared/DropzoneField'
-import { DatePickerField } from '../../shared/DatePickerField'
+import { UserGroups } from '@aaxadmin/common';
+import { UserGroup, venuesQuery, withCreateEvent, WithCreateEvent } from '@aaxadmin/controller';
+import { Button, Col, Form as AntForm, Row, Select } from 'antd';
+import { Field, Form, Formik, FormikActions } from 'formik';
+import * as moment from 'moment';
+import * as React from 'react';
+import { Query } from 'react-apollo';
+import { ImageFile } from 'react-dropzone';
+import { RouteComponentProps } from 'react-router-dom';
+import { CheckBoxField } from '../../shared/CheckBoxField';
+import { DatePickerField } from '../../shared/DatePickerField';
+import { DropzoneField } from '../../shared/DropzoneField';
+import { InputField } from '../../shared/InputField';
 import { InputTextAreaField } from '../../shared/InputTextAreaField';
-import { SelectSearchField } from '../../shared/SelectSearchField'
+import { SelectField } from '../../shared/SelectField';
+import { SelectSearchField } from '../../shared/SelectSearchField';
+
 
 const FormItem = AntForm.Item
 const Option = Select.Option
@@ -43,6 +43,7 @@ export class E extends React.PureComponent<
     }  
     submit = async (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
         this.setState({ submitting: true})
+        values.date = moment(values.date).utc().format()
         const response = await this.props.createEvent(values)
         setSubmitting(false)
         this.props.onFinish()
@@ -102,10 +103,12 @@ export class E extends React.PureComponent<
                                     <Field
                                         name="date"
                                         onBlur={console.log('_')}
+                                        showTime={{format: "HH:mm"}}
                                         showToday={false}
+                                        placeholder="Seleccione Fecha y Hora"
                                         value={moment(values.date)}
                                         defaultValue={moment().add(2, 'day')}
-                                        format="YYYY-MM-DD"
+                                        format="YYYY-MM-DD HH:mm"
                                         disabledDate={(current:any) => current && current < moment()}
                                         onChange={(newValue: any, newString: string) => setFieldValue('date', newString)}
                                         component={DatePickerField}

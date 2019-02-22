@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { FieldProps } from 'formik'
-import { Form, DatePicker } from 'antd'
+import { DatePicker, Form } from 'antd';
+import { FieldProps } from 'formik';
+import * as React from 'react';
 
 const FormItem = Form.Item
 
@@ -25,7 +25,6 @@ export const DatePickerField: React.SFC<
                 <DatePicker
                     {...field}
                     {...props}
-                    // onChange={ (newValue: any) => setFieldValue(field.name, newValue.format('YYYY-MM-DD')) }
                 />
             </FormItem>
         )
