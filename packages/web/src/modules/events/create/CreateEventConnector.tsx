@@ -50,7 +50,9 @@ export class E extends React.PureComponent<
         resetForm()
         console.log('RESPONSE from CREATE VENT FORM: ', response.data.createEvent)
     }
-    finish = () => {
+    finish = (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
+        setSubmitting(false)
+        resetForm()
         this.props.onFinish()
     }
     render() {
@@ -66,6 +68,7 @@ export class E extends React.PureComponent<
                 venue: ''
                 }} 
                 onSubmit={this.submit}
+                onReset={this.finish}
             >
                 { ({ setFieldValue, values }) => (
                     <Form style={{display: 'flex'}}>
@@ -180,7 +183,7 @@ export class E extends React.PureComponent<
                                 <Col span={12}>
                                     <Button type="default"
                                                 block
-                                                onClick={this.finish}
+                                                htmlType="reset"
                                                 >
                                             Cancelar
                                         </Button>

@@ -1,17 +1,17 @@
-import * as React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { Form as AntForm, Button, Select, Row, Col } from 'antd'
-import  { Formik, Field, Form, FormikActions } from 'formik'
-import * as moment from 'moment'
-import { withCreateNews, WithCreateNews, NewsCategory, UserGroup } from '@aaxadmin/controller'
-import { UserGroups } from '@aaxadmin/common'
-import { ImageFile } from 'react-dropzone'
+import { UserGroups } from '@aaxadmin/common';
+import { NewsCategory, UserGroup, withCreateNews, WithCreateNews } from '@aaxadmin/controller';
+import { Button, Col, Form as AntForm, Row, Select } from 'antd';
+import { Field, Form, Formik, FormikActions } from 'formik';
+import * as moment from 'moment';
+import * as React from 'react';
+import { ImageFile } from 'react-dropzone';
+import { RouteComponentProps } from 'react-router-dom';
+import { CheckBoxField } from '../../shared/CheckBoxField';
+import { DatePickerField } from '../../shared/DatePickerField';
+import { InputField } from '../../shared/InputField';
+import { InputTextAreaField } from '../../shared/InputTextAreaField';
+import { SelectField } from '../../shared/SelectField';
 
-import { InputField } from '../../shared/InputField'
-import { InputTextAreaField } from '../../shared/InputTextAreaField'
-import { SelectField } from '../../shared/SelectField'
-import { CheckBoxField } from '../../shared/CheckBoxField'
-import { DatePickerField } from '../../shared/DatePickerField'
 
 const FormItem = AntForm.Item
 const Option = Select.Option
@@ -53,10 +53,15 @@ export class N extends React.PureComponent<
         setSubmitting(false)
         console.log('RESPONSE FROM FORM SUBMISSION: ', response)
         this.props.onFinish()
+        this.setState({submitting: false})
         resetForm()
         console.log('finished')
     }
-    finish = () => { this.props.onFinish() }
+    finish = (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
+        setSubmitting(false)
+        resetForm()
+        this.props.onFinish()
+    }
     render() {
         return (
             <Formik<{}, FormValues> initialValues={{
@@ -71,6 +76,7 @@ export class N extends React.PureComponent<
                 deleteUpon: true,
                 }} 
                 onSubmit={this.submit}
+                onReset={this.finish}
             >
                 { ({ setFieldValue, values }) => (
                     <Form style={{display: 'flex'}}>
@@ -151,7 +157,7 @@ export class N extends React.PureComponent<
                                 <Col span={12}>
                                     <Button type="default"
                                             block
-                                            onClick={this.finish}
+                                            htmlType="reset"
                                             >
                                         Cancelar
                                     </Button>
