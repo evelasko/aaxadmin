@@ -45,14 +45,16 @@ export class E extends React.PureComponent<
         this.setState({ submitting: true})
         values.date = moment(values.date).utc().format()
         const response = await this.props.createEvent(values)
+        console.log('RESPONSE: ', response)
         setSubmitting(false)
-        this.props.onFinish()
         resetForm()
-        console.log('RESPONSE from CREATE VENT FORM: ', response.data.createEvent)
+        this.setState({ submitting: false})
+        this.props.onFinish()
     }
     finish = (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
         setSubmitting(false)
         resetForm()
+        this.setState({ submitting: false})
         this.props.onFinish()
     }
     render() {

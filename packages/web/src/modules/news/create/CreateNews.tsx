@@ -52,10 +52,10 @@ export class N extends React.PureComponent<
         const response = await this.props.createNews(values)
         setSubmitting(false)
         console.log('RESPONSE FROM FORM SUBMISSION: ', response)
-        this.props.onFinish()
         this.setState({submitting: false})
         resetForm()
         console.log('finished')
+        this.props.onFinish()
     }
     finish = (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
         setSubmitting(false)
