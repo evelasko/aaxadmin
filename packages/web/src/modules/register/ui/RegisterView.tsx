@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { Form as AntForm, Icon, Button, Select, Tooltip } from 'antd'
-import  { withFormik, FormikErrors, FormikProps, Field, Form } from 'formik'
-import { validUserSchema, UserGroups } from '@aaxadmin/common'
-import { Link } from 'react-router-dom'
-import { UserGroup } from '@aaxadmin/controller'
+import { UserGroups, validUserSchema } from '@aaxadmin/common';
+import { UserGroup } from '@aaxadmin/controller';
+import { Button, Form as AntForm, Icon, Select, Tooltip } from 'antd';
+import { Field, Form, FormikErrors, FormikProps, withFormik } from 'formik';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { InputField } from '../../shared/InputField';
+import { SelectField } from '../../shared/SelectField';
 
-import { SelectField } from '../../shared/SelectField'
-import { InputField } from '../../shared/InputField'
 
 const FormItem = AntForm.Item
 const Option = Select.Option
@@ -27,7 +27,7 @@ interface Props {
 export class C extends React.PureComponent<FormikProps<FormValues> & Props> {    
   render() {
     return (
-    <Form style={{display: 'flex', marginTop: 20}}>
+    <Form style={{display: 'flex', marginTop: 20, padding: 30}}>
         <div style={{width: 400, margin: 'auto'}}>
             <Field 
                 name="email" 
@@ -69,7 +69,7 @@ export class C extends React.PureComponent<FormikProps<FormValues> & Props> {
             </Button>
             </FormItem>
             <FormItem>
-            <Link to="/forgot">Recordar contraseña</Link> o <Link to="/login">inicia sesión</Link>
+            <Link to="/forgot">Recordar contraseña</Link> o <Link to="/login">Iniciar Sesión</Link>
             </FormItem>
         </div>
       </Form>
