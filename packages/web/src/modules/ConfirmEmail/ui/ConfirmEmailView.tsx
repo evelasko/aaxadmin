@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { ConfirmEmailMutationVariables } from '@aaxadmin/controller'
+import { ConfirmEmailMutationVariables } from '@aaxadmin/controller';
+import * as React from 'react';
 
 interface Props {
     onFinish: () => void

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { ConfirmEmailController } from '@aaxadmin/controller'
+import { ConfirmEmailController } from '@aaxadmin/controller';
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { ConfirmEmailView } from './ui/ConfirmEmailView';
 
-import { ConfirmEmailView } from './ui/ConfirmEmailView'
 
 export class ConfirmEmailConnector extends React.PureComponent<RouteComponentProps<{key: string}>> {
 
