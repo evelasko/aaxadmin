@@ -14,6 +14,7 @@ import { FindNewsConnector } from '../modules/news/find/FindNewsConnector';
 import Privacy from '../modules/privacy/index';
 import { RegisterConnector } from '../modules/register/RegisterConnector';
 import { TextPage } from '../modules/TextPage';
+import UnsubscribeEmail from '../modules/UnsubscribeEmail/UnsubscribeEmail';
 import { CreateVenueConnector } from '../modules/venues/create/CreateVenueConnector';
 import { FindVenueConnector } from '../modules/venues/find/FindVenueConnector';
 
@@ -38,6 +39,7 @@ export class Routes extends React.Component {
                     <Route path="/events" component={FindEventConnector} />
                     <Route path="/venues" component={FindVenueConnector} />
                     <Route path="/privacy" component={Privacy} />
+                    <Route path="/unsubscribe/:email" component={UnsubscribeEmail} />
                 </Switch>
             </BrowserRouter>
         )
