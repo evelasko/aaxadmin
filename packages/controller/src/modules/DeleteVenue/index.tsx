@@ -1,11 +1,11 @@
 // @ts-ignore
-import * as React from 'react'
-import gql from 'graphql-tag'
-import { Mutation, MutationFn } from 'react-apollo'
+import gql from 'graphql-tag';
+import * as React from 'react';
+import { Mutation, MutationFn } from 'react-apollo';
 import { DeleteVenueMutation, DeleteVenueMutationVariables } from 'src/schemaTypes';
 
 export const deleteVenueMutation = gql`
-mutation DeleteVenueMutation( $id: ID! ) { deleteVenue(id: $id) { id } }
+mutation DeleteVenueMutation( $id: ID! ) { deleteVenue(id: $id) { token error } }
 `
 
 export interface WithDeleteVenue {

@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -26,6 +27,7 @@ export interface MeQuery {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -48,6 +50,7 @@ export interface ChangePasswordMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -69,6 +72,7 @@ export interface ConfirmEmailMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -96,6 +100,7 @@ export interface CreateEventMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -124,6 +129,7 @@ export interface CreateNewsMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -146,6 +152,7 @@ export interface CreateVenueMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -166,6 +173,7 @@ export interface DeleteEventMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -186,6 +194,7 @@ export interface DeleteNewsMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -193,8 +202,9 @@ export interface DeleteNewsMutationVariables {
 // ====================================================
 
 export interface DeleteVenueMutation_deleteVenue {
-  __typename: "Venue";
-  id: string;
+  __typename: "AuthPayload";
+  token: string | null;
+  error: string | null;
 }
 
 export interface DeleteVenueMutation {
@@ -206,6 +216,7 @@ export interface DeleteVenueMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -228,6 +239,7 @@ export interface EditEventMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -249,6 +261,7 @@ export interface EditNewsMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -271,6 +284,7 @@ export interface EditVenueMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -294,7 +308,6 @@ export interface AlertsQuery_alerts {
   body: string;
   author: AlertsQuery_alerts_author;
   category: NewsCategory | null;
-  imageURL: string | null;
   deleteUpon: boolean | null;
 }
 
@@ -307,6 +320,7 @@ export interface AlertsQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -343,6 +357,7 @@ export interface AllNewsQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -379,6 +394,7 @@ export interface CallsQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -417,6 +433,7 @@ export interface EventsQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -453,6 +470,7 @@ export interface NewsQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -476,6 +494,7 @@ export interface VenuesQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -497,6 +516,7 @@ export interface ForgotPasswordMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -518,6 +538,7 @@ export interface ConfirmGroupRequestVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -540,6 +561,7 @@ export interface LoginUserMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -557,6 +579,7 @@ export interface LogoutMutation {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -584,6 +607,7 @@ export interface SignUpUserMutationVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -610,6 +634,7 @@ export interface UsersQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 //==============================================================
