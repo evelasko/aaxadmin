@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { Form as AntForm, Button, Row, Col, Divider, message } from 'antd'
-import  { Formik, Field, Form, FormikActions } from 'formik'
-
 import { withCreateVenue, WithCreateVenue } from '@aaxadmin/controller';
+import { Button, Col, Divider, Form as AntForm, message, Row } from 'antd';
+import { Field, Form, Formik, FormikActions } from 'formik';
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { InputField } from '../../shared/InputField';
+import { PlacesField } from '../../shared/PlacesField';
 
-import { PlacesField } from '../../shared/PlacesField'
-import { InputField } from '../../shared/InputField'
+
 
 const FormItem = AntForm.Item
 
@@ -27,7 +27,9 @@ export class V extends React.PureComponent<
 
     handleAddressInputChange = (address:string, placeID:string|null) => { 
         console.log('e: ', address)
-        this.setState({address, placeID}) }
+        console.log('placeID: ', placeID)
+        this.setState({address, placeID: ""}) 
+    }
 
     submit = async (values: FormValues, {setSubmitting, resetForm}: FormikActions<FormValues>) => {
         this.setState({submitting:true})
