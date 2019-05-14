@@ -1,19 +1,19 @@
-import * as React from 'react'
-import { Form as AntForm, Button, Select, Row, Col } from 'antd'
-import  { Formik, Field, Form, FormikActions } from 'formik'
-import * as moment from 'moment'
 import { UserGroup, venuesQuery } from '@aaxadmin/controller';
-import { ImageFile } from 'react-dropzone'
-import { Query } from 'react-apollo'
+import { Button, Col, Form as AntForm, Row, Select } from 'antd';
+import { Field, Form, Formik, FormikActions } from 'formik';
+import * as moment from 'moment';
+import * as React from 'react';
+import { Query } from 'react-apollo';
+import { ImageFile } from 'react-dropzone';
+import { CheckBoxField } from '../../shared/CheckBoxField';
+import { DatePickerField } from '../../shared/DatePickerField';
+import { DropzoneField } from '../../shared/DropzoneField';
+import { InputField } from '../../shared/InputField';
+import { InputTextAreaField } from '../../shared/InputTextAreaField';
+import { SelectField } from '../../shared/SelectField';
+import { SelectSearchField } from '../../shared/SelectSearchField';
 
 
-import { InputField } from '../../shared/InputField'
-import { InputTextAreaField } from '../../shared/InputTextAreaField'
-import { SelectField } from '../../shared/SelectField'
-import { CheckBoxField } from '../../shared/CheckBoxField'
-import { DropzoneField } from '../../shared/DropzoneField'
-import { DatePickerField } from '../../shared/DatePickerField'
-import { SelectSearchField } from '../../shared/SelectSearchField'
 
 const FormItem = AntForm.Item
 const Option = Select.Option
@@ -101,14 +101,16 @@ export class EventForm extends React.PureComponent<EditNewsFormProps> {
                                         name="date"
                                         onBlur={console.log('_')}
                                         showToday={false}
+                                        showTime={{format: "HH:mm"}}
                                         value={moment(values.date)}
                                         defaultValue={moment().add(2, 'day')}
-                                        format="YYYY-MM-DD"
+                                        format="YYYY-MM-DD HH:mm"
                                         disabledDate={(current:any) => current && current < moment()}
                                         onChange={(newValue: any, newString: string) => setFieldValue('date', newString)}
                                         component={DatePickerField}
                                         />
                                 </FormItem>
+                                
                             </Col>
                             <Col span={12}>
                                 <FormItem label="Eliminar automáticamente" style={{marginBottom: 0}}>

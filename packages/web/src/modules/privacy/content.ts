@@ -1,5 +1,4 @@
 export const policyContent = `## Política de Privacidad 
-
 ## Fundación Alicia Alonso
 
 \`Fundación Alicia Alonso\` te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a través del sitio Web \`alicialonso.org\`.
@@ -11,7 +10,7 @@ El uso de sitio Web implica la aceptación de esta Política de Privacidad así 
 ### Identidad del responsable
 
 - Titular: \`Fundación Alicia Alonso\`
-- NIF/CIF: \`NIF\`
+- NIF/CIF: \`G-81731705\`
 - Domicilio: \`Camino del Molino SN, 28943 Fuenlabrada Madrid\`.
 - Correo electrónico: \`admin@alicialonso.org\`
 - Sitio Web: \`alicialonso.org\`
